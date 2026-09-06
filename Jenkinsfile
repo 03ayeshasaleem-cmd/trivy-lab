@@ -2,12 +2,10 @@ pipeline {
     agent any
 
     environment {
-        
         DOCKER_BIN = '"C:\\Program Files\\Docker\\Docker\\resources\\bin\\docker.exe"'
     }
 
     stages {
-
         stage('Build Docker Image') {
             steps {
                 bat '''
@@ -19,7 +17,7 @@ pipeline {
         stage('Trivy Scan') {
             steps {
                 bat '''
-                    trivy image --severity HIGH,CRITICAL --exit-code 1 trivy-demo:%BUILD_NUMBER%
+                    wsl /usr/bin/trivy image --severity HIGH,CRITICAL --exit-code 1 trivy-demo:%BUILD_NUMBER%
                 '''
             }
         }
