@@ -17,7 +17,7 @@ pipeline {
         stage('Trivy Scan') {
             steps {
                 bat '''
-                    wsl /usr/bin/trivy image --severity HIGH,CRITICAL --exit-code 1 trivy-demo:%BUILD_NUMBER%
+                    trivy image --severity HIGH,CRITICAL --exit-code 1 trivy-demo:%BUILD_NUMBER%
                 '''
             }
         }
